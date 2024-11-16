@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  mongo-0:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo-0
+    hostname: mongo-0
+    environment:
+      - port=27017
+      - mongo_node_name=mongo
+      - mongo_replica_set_name=my_replica_set
+      - mongo_nodes_number=3
+    volumes:
+      - mongo-data-0:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-net
+
+  mongo-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo-1
+    hostname: mongo-1
+    environment:
+      - port=27018
+      - mongo_node_name=mongo
+      - mongo_replica_set_name=my_replica_set
+      - mongo_nodes_number=3
+    volumes:
+      - mongo-data-1:/data/db
+    ports:
+      - "27018"
+    networks:
+      - mongo-net
+
+  mongo-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo-2
+    hostname: mongo-2
+    environment:
+      - port=27019
+      - mongo_node_name=mongo
+      - mongo_replica_set_name=my_replica_set
+      - mongo_nodes_number=3
+    volumes:
+      - mongo-data-2:/data/db
+    ports:
+      - "27019"
+    networks:
+      - mongo-net
+
+volumes:
+  mongo-data-0:
+  mongo-data-1:
+  mongo-data-2:
+
+networks:
+  mongo-net:
