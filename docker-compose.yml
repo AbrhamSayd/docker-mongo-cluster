@@ -15,7 +15,8 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - mongo-net
+      mongo-net:
+        ipv4_address: 172.19.0.5
 
   mongo-1:
     build:
@@ -33,7 +34,8 @@ services:
     ports:
       - "27018"
     networks:
-      - mongo-net
+      mongo-net:
+        ipv4_address: 172.19.0.6
 
   mongo-2:
     build:
@@ -51,7 +53,8 @@ services:
     ports:
       - "27019"
     networks:
-      - mongo-net
+      mongo-net:
+        ipv4_address: 172.19.0.7
 
 volumes:
   mongo-data-0:
